@@ -271,7 +271,7 @@ class DisplayedFields(QAbstractListModel):  # {{{
         for i in range(self.rowCount()):
             idx = self.index(i)
             if idx.isValid():
-                self.setData(idx, show, Qt.ItemDataRole.CheckStateRole)
+                self.setData(idx, Qt.CheckState.Checked if show else Qt.CheckState.Unchecked, Qt.ItemDataRole.CheckStateRole)
 
     def flags(self, index):
         ans = QAbstractListModel.flags(self, index)
@@ -280,7 +280,7 @@ class DisplayedFields(QAbstractListModel):  # {{{
     def setData(self, index, val, role):
         ret = False
         if role == Qt.ItemDataRole.CheckStateRole:
-            self.fields[index.row()][1] = bool(val)
+            self.fields[index.row()][1] = val in (Qt.CheckState.Checked, Qt.CheckState.Checked.value)
             self.changed = True
             ret = True
             self.dataChanged.emit(index, index)
