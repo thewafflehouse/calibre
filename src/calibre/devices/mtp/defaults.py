@@ -38,6 +38,7 @@ class DeviceDefaults:
                 # Supernote A5 and A5X
                 ({'vendor': 0x2207, 'product': 0x0031}, supernote_settings),
                 ({'vendor': 0x2207, 'product': 0x0011}, supernote_settings),
+                ({'vendor': 0x18D1, 'product': 0x0011}, supernote_settings),
         )
 
     def __call__(self, device, driver):
